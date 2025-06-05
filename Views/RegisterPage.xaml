@@ -74,6 +74,16 @@
                     FontAttributes="Bold"
                     HeightRequest="50"
                     Command="{Binding RegisterCommand}" />
+            <Label Text="¿Ya tienes cuenta?"
+                FontSize="14"
+                TextColor="Gray"
+                HorizontalOptions="Center" />
+
+            <Button Text="Inicia sesión"
+                FontSize="14"
+                TextColor="Black"
+                BackgroundColor="Transparent"
+                Command="{Binding IrALoginCommand}" />
 
             <Label Text="{Binding Mensaje}"
                    TextColor="Red"
