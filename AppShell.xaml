@@ -14,6 +14,8 @@
         Route="MainPage" />
     <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}" />
     <ShellContent Route="register" ContentTemplate="{DataTemplate views:RegisterPage}" />
+    <ShellContent Route="propiedades" ContentTemplate="{DataTemplate views:PropiedadesPage}" />
+
 
 
 

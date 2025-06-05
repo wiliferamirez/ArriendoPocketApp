@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ArriendoPocketApp.ViewModels"
+    x:Class="ArriendoPocketApp.Views.PropiedadesPage"
+    BackgroundColor="White"
+    Title="Mis Propiedades">
+
+    <ContentPage.BindingContext>
+        <vm:PropiedadesViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20" Spacing="15">
+
+        <Button Text="➕ Nueva Propiedad"
+                Command="{Binding IrACrearPropiedadCommand}"
+                BackgroundColor="Black"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="45" />
+
+        <CollectionView ItemsSource="{Binding ListaPropiedades}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="LightGray" CornerRadius="10" Padding="10" Margin="0,5">
+                        <StackLayout>
+                            <Label Text="{Binding AliasPropiedad}" FontAttributes="Bold" FontSize="18" />
+                            <Label Text="{Binding DireccionPropiedad}" FontSize="14" />
+                            <Label Text="{Binding Disponible, StringFormat='Disponible: {0}'}" FontSize="14" />
+
+                            <StackLayout Orientation="Horizontal" Spacing="15" Margin="0,5,0,0">
+                                <Button Text="Editar"
+                                        Command="{Binding BindingContext.EditarCommand, Source={x:Reference Name=Page}}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="LightGray"
+                                        TextColor="Black"
+                                        HeightRequest="35" />
+
+                                <Button Text="Eliminar"
+                                        Command="{Binding BindingContext.EliminarCommand, Source={x:Reference Name=Page}}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="IndianRed"
+                                        TextColor="White"
+                                        HeightRequest="35" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
