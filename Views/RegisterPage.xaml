@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ArriendoPocketApp.ViewModels"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="ArriendoPocketApp.Views.RegisterPage"
+             BackgroundColor="White"
+             Title="Registro">
+
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="15">
+
+            <Label Text="Crear cuenta" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <Entry Placeholder="Cédula"
+                   Text="{Binding Cedula}"
+                   Keyboard="Numeric"
+                   BackgroundColor="#F0F0F0"
+                   HeightRequest="50"
+                   
+                   />
+
+            <Entry Placeholder="Nombre"
+                   Text="{Binding Nombre}"
+                   BackgroundColor="#F0F0F0"
+                   HeightRequest="50"
+                   
+                    />
+
+            <Entry Placeholder="Apellido"
+                   Text="{Binding Apellido}"
+                   BackgroundColor="#F0F0F0"
+                   HeightRequest="50"
+                   
+                    />
+
+            <Entry Placeholder="Correo"
+                   Text="{Binding Correo}"
+                   Keyboard="Email"
+                   BackgroundColor="#F0F0F0"
+                   HeightRequest="50"
+                   
+                   />
+
+            <Entry Placeholder="Teléfono"
+                   Text="{Binding Telefono}"
+                   Keyboard="Telephone"
+                   BackgroundColor="#F0F0F0"
+                   HeightRequest="50"
+                   
+                    />
+
+            <DatePicker Date="{Binding FechaNacimiento}"
+                        MaximumDate="{x:Static sys:DateTime.Now}"
+                        Format="D"
+                        HeightRequest="50" />
+
+            <Entry Placeholder="Contraseña"
+                   Text="{Binding Contrasena}"
+                   IsPassword="True"
+                   BackgroundColor="#F0F0F0"
+                   HeightRequest="50"
+                   
+                    />
+
+            <Button Text="Registrarse"
+                    TextColor="White"
+                    BackgroundColor="Black"
+                    CornerRadius="8"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    Command="{Binding RegisterCommand}" />
+
+            <Label Text="{Binding Mensaje}"
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding HayError}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

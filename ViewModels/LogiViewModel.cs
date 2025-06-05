@@ -30,6 +30,11 @@ namespace ArriendoPocketApp.ViewModels
         }
 
         public ICommand LoginCommand => new Command(async () => await RealizarLogin());
+        public ICommand IrARegistroCommand => new Command(async () =>
+        {
+            await Shell.Current.GoToAsync("//register");
+        });
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propName = null)

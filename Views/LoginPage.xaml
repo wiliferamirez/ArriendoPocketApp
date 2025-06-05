@@ -57,6 +57,16 @@
                     FontAttributes="Bold"
                     HeightRequest="50"
                     Command="{Binding LoginCommand}" />
+            <Label Text="¿No tienes cuenta?"
+           FontSize="14"
+           TextColor="Gray"
+           HorizontalOptions="Center" />
+
+            <Button Text="Regístrate aquí"
+            FontSize="14"
+            TextColor="Black"
+            BackgroundColor="Transparent"
+            Command="{Binding IrARegistroCommand}" />
 
             <Label Text="{Binding Mensaje}"
                    TextColor="Red"
