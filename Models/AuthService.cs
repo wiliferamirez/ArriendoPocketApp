@@ -11,7 +11,7 @@ namespace ArriendoPocketApp.Services
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://TU_API_URL/api/auth/")
+                BaseAddress = new Uri("http://192.168.0.143:5037/api/Auth/")
             };
         }
 
