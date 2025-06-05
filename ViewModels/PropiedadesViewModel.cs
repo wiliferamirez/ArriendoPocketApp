@@ -13,7 +13,7 @@ namespace ArriendoPocketApp.ViewModels
 
         public ICommand IrACrearPropiedadCommand => new Command(async () =>
         {
-            await Shell.Current.GoToAsync("crearpropiedad");
+            await Shell.Current.GoToAsync("//crearpropiedad");
         });
 
         public ICommand EditarCommand => new Command<Propiedad>(async (propiedad) =>

@@ -19,6 +19,11 @@ namespace ArriendoPocketApp.Services
         {
             return await _httpClient.GetFromJsonAsync<List<Propiedad>>("") ?? new List<Propiedad>();
         }
+        public async Task<bool> AgregarPropiedadAsync(Propiedad propiedad)
+        {
+            var response = await _httpClient.PostAsJsonAsync("", propiedad);
+            return response.IsSuccessStatusCode;
+        }
 
         public async Task<bool> EliminarPropiedadAsync(int id)
         {

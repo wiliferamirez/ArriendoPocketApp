@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ArriendoPocketApp.ViewModels"
+    x:Class="ArriendoPocketApp.Views.AgregarPropiedadPage"
+    Title="Nueva Propiedad"
+    BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <vm:AgregarPropiedadViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <Entry Placeholder="Alias de la propiedad" Text="{Binding AliasPropiedad}" />
+            <Entry Placeholder="Dirección" Text="{Binding DireccionPropiedad}" />
+            <Entry Placeholder="Ciudad" Text="{Binding CiudadUbicacion}" />
+            <Entry Placeholder="Nombre del Inquilino" Text="{Binding NombreInquilino}" />
+
+            <Entry Placeholder="Número de habitaciones" Keyboard="Numeric" Text="{Binding NumeroHabitaciones}" />
+            <Entry Placeholder="Canon arrendatario" Keyboard="Numeric" Text="{Binding CanonArrendatario}" />
+            <Entry Placeholder="Meses de garantía" Keyboard="Numeric" Text="{Binding MesesGarantia}" />
+            <Entry Placeholder="Número de pisos" Keyboard="Numeric" Text="{Binding NumeroPisos}" />
+            <Entry Placeholder="Área de construcción" Keyboard="Numeric" Text="{Binding AreaConstruccion}" />
+
+            <DatePicker Date="{Binding FechaConstruccion}" Format="D" />
+
+            <Switch IsToggled="{Binding Disponible}" />
+            <Label Text="Disponible" />
+
+            <Button Text="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    HeightRequest="45"
+                    CornerRadius="8" />
+
+            <Label Text="{Binding Mensaje}"
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding HayError}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

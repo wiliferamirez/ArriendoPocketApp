@@ -16,7 +16,7 @@ namespace ArriendoPocketApp.Models
         public int NumeroPisos { get; set; }
         public decimal AreaConstruccion { get; set; }
         public string CiudadUbicacion { get; set; }
-        public DateOnly FechaConstruccion { get; set; }
+        public DateTime FechaConstruccion { get; set; }
         public DateTime FechaCreacion { get; set; }
     }
 }
