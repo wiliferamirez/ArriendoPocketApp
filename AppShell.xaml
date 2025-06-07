@@ -16,6 +16,9 @@
     <ShellContent Route="register" ContentTemplate="{DataTemplate views:RegisterPage}" />
     <ShellContent Route="propiedades" ContentTemplate="{DataTemplate views:PropiedadesPage}" />
     <ShellContent Route="crearpropiedad" ContentTemplate="{DataTemplate views:AgregarPropiedadPage}" />
+    <ShellContent Route="editarpropiedad" ContentTemplate="{DataTemplate views:EditarPropiedadPage}" />
+    
+    
 
 
 

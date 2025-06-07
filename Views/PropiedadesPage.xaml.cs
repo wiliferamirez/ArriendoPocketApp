@@ -1,9 +1,22 @@
-namespace ArriendoPocketApp.Views;
+using ArriendoPocketApp.ViewModels;
 
-public partial class PropiedadesPage : ContentPage
+namespace ArriendoPocketApp.Views
 {
-	public PropiedadesPage()
-	{
-		InitializeComponent();
-	}
+    public partial class PropiedadesPage : ContentPage
+    {
+        public PropiedadesPage()
+        {
+            InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (BindingContext is PropiedadesViewModel vm)
+            {
+                await vm.CargarPropiedades();
+            }
+        }
+    }
 }

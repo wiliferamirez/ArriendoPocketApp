@@ -28,15 +28,17 @@ namespace ArriendoPocketApp.ViewModels
 
             bool success = await _service.EliminarPropiedadAsync(propiedad.PropiedadID);
             if (success)
+            {
                 ListaPropiedades.Remove(propiedad);
+                await Shell.Current.DisplayAlert("Éxito", "Propiedad eliminada correctamente.", "OK");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "No se pudo eliminar la propiedad.", "OK");
+            }
         });
 
-        public PropiedadesViewModel()
-        {
-            _ = CargarPropiedades();
-        }
-
-        private async Task CargarPropiedades()
+        public async Task CargarPropiedades()
         {
             var propiedades = await _service.GetPropiedadesAsync();
             ListaPropiedades.Clear();

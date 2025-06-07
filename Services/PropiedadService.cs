@@ -35,7 +35,7 @@ namespace ArriendoPocketApp.Services
 
         public async Task<bool> EliminarPropiedadAsync(int id)
         {
-            var response = await _httpClient.DeleteAsync($"{id}");
+            var response = await _httpClient.DeleteAsync($"Propiedades/{id}");
             return response.IsSuccessStatusCode;
         }
     }
