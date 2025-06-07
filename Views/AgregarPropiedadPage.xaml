@@ -12,23 +12,42 @@
     </ContentPage.BindingContext>
 
     <ScrollView>
-        <VerticalStackLayout Padding="25" Spacing="15">
+        <VerticalStackLayout Padding="25" Spacing="10">
 
-            <Entry Placeholder="Alias de la propiedad" Text="{Binding AliasPropiedad}" />
-            <Entry Placeholder="Dirección" Text="{Binding DireccionPropiedad}" />
-            <Entry Placeholder="Ciudad" Text="{Binding CiudadUbicacion}" />
-            <Entry Placeholder="Nombre del Inquilino" Text="{Binding NombreInquilino}" />
+            <Label Text="Alias de la Propiedad" />
+            <Entry Placeholder="Ej: Casa del sur" Text="{Binding AliasPropiedad}" />
 
-            <Entry Placeholder="Número de habitaciones" Keyboard="Numeric" Text="{Binding NumeroHabitaciones}" />
-            <Entry Placeholder="Canon arrendatario" Keyboard="Numeric" Text="{Binding CanonArrendatario}" />
-            <Entry Placeholder="Meses de garantía" Keyboard="Numeric" Text="{Binding MesesGarantia}" />
-            <Entry Placeholder="Número de pisos" Keyboard="Numeric" Text="{Binding NumeroPisos}" />
-            <Entry Placeholder="Área de construcción" Keyboard="Numeric" Text="{Binding AreaConstruccion}" />
+            <Label Text="Dirección" />
+            <Entry Placeholder="Ej: Av. Siempre Viva 123" Text="{Binding DireccionPropiedad}" />
 
-            <DatePicker Date="{Binding FechaConstruccion}" Format="D" />
+            <Label Text="Ciudad de Ubicación" />
+            <Entry Placeholder="Ej: Quito" Text="{Binding CiudadUbicacion}" />
 
-            <Switch IsToggled="{Binding Disponible}" />
-            <Label Text="Disponible" />
+            <Label Text="Nombre del Inquilino" />
+            <Entry Placeholder="Ej: Pedro Gómez" Text="{Binding NombreInquilino}" />
+
+            <Label Text="Número de Habitaciones" />
+            <Entry Placeholder="Ej: 3" Keyboard="Numeric" Text="{Binding NumeroHabitacionesTexto}" />
+
+            <Label Text="Canon Arrendatario" />
+            <Entry Placeholder="Ej: 250.00" Keyboard="Numeric" Text="{Binding CanonArrendatarioTexto}" />
+
+            <Label Text="Meses de Garantía" />
+            <Entry Placeholder="Ej: 2" Keyboard="Numeric" Text="{Binding MesesGarantiaTexto}" />
+
+            <Label Text="Número de Pisos" />
+            <Entry Placeholder="Ej: 1" Keyboard="Numeric" Text="{Binding NumeroPisosTexto}" />
+
+            <Label Text="Área de Construcción" />
+            <Entry Placeholder="Ej: 120.5" Keyboard="Numeric" Text="{Binding AreaConstruccionTexto}" />
+
+            <Label Text="Fecha de Construcción" />
+            <DatePicker Date="{Binding FechaConstruccion}" Format="dd-mm-yyyy" />
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                <Label Text="¿Disponible?" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding Disponible}" />
+            </StackLayout>
 
             <Button Text="Guardar"
                     Command="{Binding GuardarCommand}"

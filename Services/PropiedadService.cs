@@ -1,4 +1,5 @@
 using ArriendoPocketApp.Models;
+using System.Diagnostics;
 using System.Net.Http.Json;
 
 namespace ArriendoPocketApp.Services
@@ -11,7 +12,7 @@ namespace ArriendoPocketApp.Services
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("http://192.168.0.143:5037/api/Propiedades/")
+                BaseAddress = new Uri("http://192.168.0.143:5037/api/")
             };
         }
 
@@ -21,9 +22,15 @@ namespace ArriendoPocketApp.Services
         }
         public async Task<bool> AgregarPropiedadAsync(Propiedad propiedad)
         {
-            var response = await _httpClient.PostAsJsonAsync("", propiedad);
+            var response = await _httpClient.PostAsJsonAsync("Propiedades", propiedad);
+
+            var content = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine($"STATUS: {response.StatusCode}");
+            Debug.WriteLine($"RESPUESTA: {content}");
+
             return response.IsSuccessStatusCode;
         }
+
 
         public async Task<bool> EliminarPropiedadAsync(int id)
         {

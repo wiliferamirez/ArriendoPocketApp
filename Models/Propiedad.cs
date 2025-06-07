@@ -5,7 +5,6 @@ namespace ArriendoPocketApp.Models
     public class Propiedad
     {
         public int PropiedadID { get; set; }
-        public string ArrendatarioID { get; set; }
         public string NombreInquilino { get; set; }
         public string AliasPropiedad { get; set; }
         public string DireccionPropiedad { get; set; }

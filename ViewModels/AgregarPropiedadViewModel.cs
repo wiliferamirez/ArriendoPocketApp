@@ -1,6 +1,9 @@
 using System.Windows.Input;
 using ArriendoPocketApp.Models;
 using ArriendoPocketApp.Services;
+using System;
+using System.Diagnostics;
+using Microsoft.Maui.Storage;
 
 namespace ArriendoPocketApp.ViewModels
 {
@@ -13,11 +16,11 @@ namespace ArriendoPocketApp.ViewModels
         public string CiudadUbicacion { get; set; }
         public string NombreInquilino { get; set; }
 
-        public int NumeroHabitaciones { get; set; }
-        public decimal CanonArrendatario { get; set; }
-        public int MesesGarantia { get; set; }
-        public int NumeroPisos { get; set; }
-        public decimal AreaConstruccion { get; set; }
+        public int NumeroHabitaciones { get; set; } = 1;
+        public decimal CanonArrendatario { get; set; } = 0;
+        public int MesesGarantia { get; set; } = 1;
+        public int NumeroPisos { get; set; } = 1;
+        public decimal AreaConstruccion { get; set; } = 0;
 
         public DateTime FechaConstruccion { get; set; } = DateTime.Now;
         public bool Disponible { get; set; } = true;
@@ -38,6 +41,7 @@ namespace ArriendoPocketApp.ViewModels
 
         public ICommand GuardarCommand => new Command(async () =>
         {
+
             var nueva = new Propiedad
             {
                 AliasPropiedad = AliasPropiedad,
@@ -58,13 +62,15 @@ namespace ArriendoPocketApp.ViewModels
 
             if (resultado)
             {
+                HayError = false;
+                Mensaje = "";
                 await Shell.Current.DisplayAlert("Éxito", "Propiedad registrada correctamente", "OK");
                 await Shell.Current.GoToAsync("//propiedades");
             }
             else
             {
-                Mensaje = "No se pudo registrar la propiedad.";
                 HayError = true;
+                Mensaje = "No se pudo registrar la propiedad.";
             }
         });
     }

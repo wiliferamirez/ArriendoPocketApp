@@ -16,6 +16,7 @@ namespace ArriendoPocketApp.ViewModels
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public string Contrasena { get; set; }
+        public string ConfirmarContrasena { get; set; }
         public DateTime FechaNacimiento { get; set; } = DateTime.Now;
 
         private string _mensaje;
@@ -53,7 +54,8 @@ namespace ArriendoPocketApp.ViewModels
                 CorreoArrendatario = Correo,
                 TelefonoArrendatario = Telefono,
                 FechaNacimientoArrendatario = FechaNacimiento,
-                Contrasena = Contrasena
+                Contrasena = Contrasena,
+                ConfirmarContrasena = ConfirmarContrasena
             };
 
             var resultado = await _authService.RegisterAsync(model);

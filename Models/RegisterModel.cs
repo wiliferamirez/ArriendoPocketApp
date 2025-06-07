@@ -9,5 +9,6 @@
         public string TelefonoArrendatario { get; set; }
         public DateTime FechaNacimientoArrendatario { get; set; }
         public string Contrasena { get; set; }
+        public string ConfirmarContrasena { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using ArriendoPocketApp.Models;
+using System.Net;
 
 namespace ArriendoPocketApp.Services
 {
@@ -18,17 +19,21 @@ namespace ArriendoPocketApp.Services
         public async Task<string> RegisterAsync(RegisterModel model)
         {
             var response = await _httpClient.PostAsJsonAsync("register", model);
-            return response.IsSuccessStatusCode
-                ? "Registro exitoso"
-                : $"Error: {await response.Content.ReadAsStringAsync()}";
+            if (response.IsSuccessStatusCode)
+            {
+                return "Registro exitoso";
+            }
+
+            var errorContent = await response.Content.ReadAsStringAsync();
+            return $"Error: {errorContent}";
         }
 
-        public async Task<string> LoginAsync(LoginModel model)
+        public async Task<(bool success, string responseBody)> LoginAsync(LoginModel model)
         {
             var response = await _httpClient.PostAsJsonAsync("login", model);
-            return response.IsSuccessStatusCode
-                ? await response.Content.ReadAsStringAsync()
-                : "Login fallido";
+            var content = await response.Content.ReadAsStringAsync();
+
+            return (response.IsSuccessStatusCode, content);
         }
     }
 }
