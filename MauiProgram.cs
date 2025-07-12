@@ -26,8 +26,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<AuthService>();
 		builder.Services.AddSingleton<PropiedadService>();
 		builder.Services.AddSingleton<LoginViewModel>();
+		builder.Services.AddSingleton<RegisterViewModel>();
 
-		var app = builder.Build();
+        var app = builder.Build();
 
         Ioc.Default.ConfigureServices(app.Services);
 

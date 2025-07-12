@@ -7,9 +7,6 @@
              BackgroundColor="White"
              Title="Registro">
 
-    <ContentPage.BindingContext>
-        <vm:RegisterViewModel />
-    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="15">

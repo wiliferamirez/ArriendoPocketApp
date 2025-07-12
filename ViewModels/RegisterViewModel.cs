@@ -8,7 +8,12 @@ namespace ArriendoPocketApp.ViewModels
 {
     public class RegisterViewModel : INotifyPropertyChanged
     {
-        private readonly AuthService _authService = new();
+        private readonly AuthService _authService;
+
+        public RegisterViewModel(AuthService authService)
+        {
+            _authService = authService;
+        }
 
         public string Cedula { get; set; }
         public string Nombre { get; set; }
