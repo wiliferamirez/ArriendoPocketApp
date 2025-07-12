@@ -12,6 +12,11 @@ namespace ArriendoPocketApp.ViewModels
     {
         private readonly AuthService _authService = new();
 
+        public LoginViewModel(AuthService authService)
+        {
+            _authService = authService;
+        }
+
         public string Correo { get; set; }
         public string Contrasena { get; set; }
         public bool Recordarme { get; set; }

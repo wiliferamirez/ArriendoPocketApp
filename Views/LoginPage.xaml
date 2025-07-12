@@ -6,9 +6,7 @@
              Title="Iniciar Sesión"
              xmlns:vm="clr-namespace:ArriendoPocketApp.ViewModels">
 
-    <ContentPage.BindingContext>
-        <vm:LoginViewModel />
-    </ContentPage.BindingContext>
+
 
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="25">
