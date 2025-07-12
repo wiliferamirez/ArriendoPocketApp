@@ -1,4 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using ArriendoPocketApp.Services;
+using ArriendoPocketApp.ViewModels;
 
 namespace ArriendoPocketApp;
 
@@ -9,7 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -19,6 +23,14 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+		builder.Services.AddSingleton<AuthService>();
+		builder.Services.AddSingleton<PropiedadService>();
+		builder.Services.AddSingleton<LoginViewModel>();
+
+		var app = builder.Build();
+
+        Ioc.Default.ConfigureServices(app.Services);
+
+        return app;
 	}
 }
