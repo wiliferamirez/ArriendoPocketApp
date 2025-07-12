@@ -37,6 +37,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<RegisterViewModel>();
 		builder.Services.AddSingleton<PropiedadesViewModel>();
 		builder.Services.AddSingleton<LogService>();
+		builder.Services.AddTransient<AgregarPropiedadViewModel>();
 
         var app = builder.Build();
 

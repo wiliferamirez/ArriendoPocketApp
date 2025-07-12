@@ -7,46 +7,43 @@
     Title="Nueva Propiedad"
     BackgroundColor="White">
 
-    <ContentPage.BindingContext>
-        <vm:AgregarPropiedadViewModel />
-    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout Padding="25" Spacing="10">
 
-            <Label Text="Alias de la Propiedad" />
-            <Entry Placeholder="Ej: Casa del sur" Text="{Binding AliasPropiedad}" />
+            <Label Text="Alias de la Propiedad" TextColor="black" />
+            <Entry Placeholder="Ej: Casa del sur" Text="{Binding AliasPropiedad}" TextColor="black"/>
 
-            <Label Text="Dirección" />
-            <Entry Placeholder="Ej: Av. Siempre Viva 123" Text="{Binding DireccionPropiedad}" />
+            <Label Text="Dirección" TextColor="black"/>
+            <Entry Placeholder="Ej: Av. Siempre Viva 123" Text="{Binding DireccionPropiedad}" TextColor="black"/>
 
-            <Label Text="Ciudad de Ubicación" />
-            <Entry Placeholder="Ej: Quito" Text="{Binding CiudadUbicacion}" />
+            <Label Text="Ciudad de Ubicación" TextColor="black"/>
+            <Entry Placeholder="Ej: Quito" Text="{Binding CiudadUbicacion}" TextColor="black"/>
 
-            <Label Text="Nombre del Inquilino" />
-            <Entry Placeholder="Ej: Pedro Gómez" Text="{Binding NombreInquilino}" />
+            <Label Text="Nombre del Inquilino" TextColor="black" />
+            <Entry Placeholder="Ej: Pedro Gómez" Text="{Binding NombreInquilino}" TextColor="black"/>
 
-            <Label Text="Número de Habitaciones" />
-            <Entry Placeholder="Ej: 3" Keyboard="Numeric" Text="{Binding NumeroHabitacionesTexto}" />
+            <Label Text="Número de Habitaciones" TextColor="black"/>
+            <Entry Placeholder="Ej: 3" Keyboard="Numeric" Text="{Binding NumeroHabitacionesTexto}" TextColor="black"/>
 
-            <Label Text="Canon Arrendatario" />
-            <Entry Placeholder="Ej: 250.00" Keyboard="Numeric" Text="{Binding CanonArrendatarioTexto}" />
+            <Label Text="Canon Arrendatario" TextColor="black"/>
+            <Entry Placeholder="Ej: 250.00" Keyboard="Numeric" Text="{Binding CanonArrendatarioTexto}" TextColor="black"/>
 
-            <Label Text="Meses de Garantía" />
-            <Entry Placeholder="Ej: 2" Keyboard="Numeric" Text="{Binding MesesGarantiaTexto}" />
+            <Label Text="Meses de Garantía" TextColor="black"/>
+            <Entry Placeholder="Ej: 2" Keyboard="Numeric" Text="{Binding MesesGarantiaTexto}" TextColor="black"/>
 
-            <Label Text="Número de Pisos" />
-            <Entry Placeholder="Ej: 1" Keyboard="Numeric" Text="{Binding NumeroPisosTexto}" />
+            <Label Text="Número de Pisos" TextColor="black"/>
+            <Entry Placeholder="Ej: 1" Keyboard="Numeric" Text="{Binding NumeroPisosTexto}" TextColor="black"/>
 
-            <Label Text="Área de Construcción" />
-            <Entry Placeholder="Ej: 120.5" Keyboard="Numeric" Text="{Binding AreaConstruccionTexto}" />
+            <Label Text="Área de Construcción" TextColor="black"/>
+            <Entry Placeholder="Ej: 120.5" Keyboard="Numeric" Text="{Binding AreaConstruccionTexto}" TextColor="black"/>
 
-            <Label Text="Fecha de Construcción" />
-            <DatePicker Date="{Binding FechaConstruccion}" Format="dd-mm-yyyy" />
+            <Label Text="Fecha de Construcción" TextColor="black"/>
+            <DatePicker Date="{Binding FechaConstruccion}" Format="dd-mm-yyyy" TextColor="black"/>
 
             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                <Label Text="¿Disponible?" VerticalOptions="Center" />
-                <Switch IsToggled="{Binding Disponible}" />
+                <Label Text="¿Disponible?" VerticalOptions="Center" TextColor="black"/>
+                <Switch IsToggled="{Binding Disponible}" BackgroundColor="Black"/>
             </StackLayout>
 
             <Button Text="Guardar"
