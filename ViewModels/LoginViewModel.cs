@@ -10,11 +10,12 @@ namespace ArriendoPocketApp.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private readonly AuthService _authService = new();
-
-        public LoginViewModel(AuthService authService)
+        private readonly AuthService _authService;
+        private readonly LogService _logService;
+        public LoginViewModel(AuthService authService, LogService logService)
         {
             _authService = authService;
+            _logService = logService;
         }
 
         public string Correo { get; set; }
@@ -35,13 +36,13 @@ namespace ArriendoPocketApp.ViewModels
             set { _hayError = value; OnPropertyChanged(); }
         }
 
-        public ICommand LoginCommand => new Command(async () => await RealizarLogin());
+        public ICommand LoginCommand => new Command(async () => await RealizarLoginAsync());
         public ICommand IrARegistroCommand => new Command(async () =>
         {
             await Shell.Current.GoToAsync("//register");
         });
 
-        private async Task RealizarLogin()
+        private async Task RealizarLoginAsync()
         {
             var modelo = new LoginModel
             {
@@ -61,6 +62,15 @@ namespace ArriendoPocketApp.ViewModels
                         PropertyNameCaseInsensitive = true
                     });
 
+                    await _logService.AddAsync(new LogEntry
+                    {
+                        Timestamp = DateTime.UtcNow,
+                        Level = "Info",
+                        Message = $"Usuario {datos.NombreArrendatario} ha iniciado sesión",
+                        Endpoint = "POST /Auth/login",
+                        UserId = datos?.ArrendatarioID.ToString(),  
+                    }); 
+
                     Preferences.Set("ArrendatarioID", datos.ArrendatarioID);
                     Preferences.Set("NombreArrendatario", datos.NombreArrendatario);
 
@@ -71,12 +81,27 @@ namespace ArriendoPocketApp.ViewModels
                 }
                 else
                 {
+                    await _logService.AddAsync(new LogEntry
+                    {
+                        Timestamp = DateTime.UtcNow,
+                        Level = "Warning",
+                        Message = "Login fallido",
+                        Endpoint = "POST /Auth/login",
+                    });
                     HayError = true;
                     Mensaje = "Login fallido: " + json;
                 }
             }
             catch (Exception ex)
             {
+                await _logService.AddAsync(new LogEntry
+                {
+                    Timestamp = DateTime.UtcNow,
+                    Level = "Error",
+                    Message = "Error al realizar login: " + ex.Message,
+                    Endpoint = "POST /Auth/login",
+                    Payload = JsonSerializer.Serialize(modelo)
+                });
                 HayError = true;
                 Mensaje = "Error de red: " + ex.Message;
             }
