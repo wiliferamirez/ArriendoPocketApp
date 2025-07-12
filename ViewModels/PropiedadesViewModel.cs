@@ -26,7 +26,8 @@ namespace ArriendoPocketApp.ViewModels
 
         public ICommand EditarCommand => new Command<Propiedad>(async (propiedad) =>
         {
-            await Shell.Current.GoToAsync($"editarpropiedad?propiedadId={propiedad.PropiedadID}");
+            await Shell.Current.GoToAsync(
+                new ShellNavigationState($"//editarpropiedad?propiedadId={propiedad.PropiedadID}"));
         });
 
         public ICommand EliminarCommand => new Command<Propiedad>(async (propiedad) =>

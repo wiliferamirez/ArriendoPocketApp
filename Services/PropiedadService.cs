@@ -35,5 +35,28 @@ namespace ArriendoPocketApp.Services
             var response = await _httpClient.DeleteAsync($"Propiedades/{id}");
             return response.IsSuccessStatusCode;
         }
+
+        // PropiedadService.cs
+        public async Task<Propiedad> GetPropiedadAsync(int id)
+        {
+            // GET /Propiedades/{id}
+            var resp = await _httpClient.GetAsync($"Propiedades/{id}");
+            resp.EnsureSuccessStatusCode();
+            return await resp.Content.ReadFromJsonAsync<Propiedad>();
+        }
+
+        public async Task<(bool Success, string Content)> ActualizarPropiedadAsync(Propiedad propiedad)
+        {
+            // PUT /Propiedades/{id}
+            var response = await _httpClient.PutAsJsonAsync(
+                $"Propiedades/{propiedad.PropiedadID}", propiedad);
+            var content = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine($"STATUS: {response.StatusCode}");
+            Debug.WriteLine($"RESPUESTA: {content}");
+            return (response.IsSuccessStatusCode, content);
+        }
+
+
+
     }
 }

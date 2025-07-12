@@ -7,6 +7,7 @@ using ArriendoPocketApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Maui.Storage;
 using System.IO;
+using ArriendoPocketApp.Views;
 
 namespace ArriendoPocketApp;
 
@@ -31,6 +32,8 @@ public static class MauiProgram
         builder.Services.AddDbContext<LogsDbContext>(options =>
 			options.UseSqlite($"Filename={dbPath}"));
 
+        Routing.RegisterRoute("editarpropiedad", typeof(EditarPropiedadPage));
+
         builder.Services.AddSingleton<AuthService>();
 		builder.Services.AddSingleton<PropiedadService>();
 		builder.Services.AddSingleton<LoginViewModel>();
@@ -38,6 +41,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<PropiedadesViewModel>();
 		builder.Services.AddSingleton<LogService>();
 		builder.Services.AddTransient<AgregarPropiedadViewModel>();
+        builder.Services.AddTransient<EditarPropiedadViewModel>();
 
         var app = builder.Build();
 

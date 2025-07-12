@@ -1,12 +1,83 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ArriendoPocketApp.Views.EditarPropiedadPage"
-             Title="EditarPropiedadPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ArriendoPocketApp.Views.EditarPropiedadPage"
+    Title="Editar Propiedad"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <Label Text="Alias de la Propiedad" TextColor="Black"/>
+            <Entry
+                Placeholder="Ej: Casa del sur"
+                Text="{Binding AliasPropiedad, Mode=TwoWay}" TextColor="Black" />
+
+            <Label Text="Dirección" />
+            <Entry
+                Placeholder="Ej: Av. Siempre Viva 123"
+                Text="{Binding DireccionPropiedad, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Ciudad de Ubicación" TextColor="Black"/>
+            <Entry
+                Placeholder="Ej: Quito"
+                Text="{Binding CiudadUbicacion, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Nombre del Inquilino" TextColor="Black"/>
+            <Entry
+                Placeholder="Ej: Pedro Gómez"
+                Text="{Binding NombreInquilino, Mode=TwoWay}" TextColor="Black" />
+
+            <Label Text="Número de Habitaciones" TextColor="Black"/>
+            <Entry
+                Keyboard="Numeric"
+                Text="{Binding NumeroHabitaciones, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Canon Arrendatario" TextColor="Black"/>
+            <Entry
+                Keyboard="Numeric"
+                Text="{Binding CanonArrendatario, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Meses de Garantía" TextColor="Black"/>
+            <Entry
+                Keyboard="Numeric"
+                Text="{Binding MesesGarantia, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Número de Pisos" TextColor="Black"/>
+            <Entry
+                Keyboard="Numeric"
+                Text="{Binding NumeroPisos, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Área de Construcción" TextColor="Black"/>
+            <Entry
+                Keyboard="Numeric"
+                Text="{Binding AreaConstruccion, Mode=TwoWay}" TextColor="Black"/>
+
+            <Label Text="Fecha de Construcción" TextColor="Black"/>
+            <DatePicker
+                Date="{Binding FechaConstruccion, Mode=TwoWay}"
+                Format="dd/MM/yyyy" TextColor="Black"/>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                <Label Text="¿Disponible?" VerticalOptions="Center" TextColor="Black"/>
+                <Switch IsToggled="{Binding Disponible, Mode=TwoWay}"/>
+            </StackLayout>
+
+            <Button
+                Text="Guardar cambios"
+                Command="{Binding GuardarCambiosCommand}"
+                BackgroundColor="Black"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="45" />
+
+            <Label
+                Text="{Binding Mensaje}"
+                TextColor="Red"
+                IsVisible="{Binding HayError}"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
