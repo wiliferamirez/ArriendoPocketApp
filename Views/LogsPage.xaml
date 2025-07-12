@@ -6,32 +6,43 @@
     Title="Visor de Logs"
     BackgroundColor="White">
 
-    <CollectionView
-        ItemsSource="{Binding Logs}"
-        RemainingItemsThreshold="1"
-        RemainingItemsThresholdReachedCommand="{Binding LoadLogsCommand}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True">
-                    <StackLayout>
-                        <Label
-                            Text="{Binding Timestamp, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}"
-                            FontAttributes="Bold"
-                            FontSize="12" />
-                        <Label Text="{Binding Level}" FontSize="12" />
-                        <Label Text="{Binding Message}" FontSize="14" />
-                        <Label
-                            Text="{Binding Endpoint}"
-                            FontSize="12"
-                            TextColor="Gray" />
-                        <Label
-                            Text="{Binding Payload}"
-                            FontSize="10"
-                            TextColor="DarkGray"
-                            LineBreakMode="TailTruncation" />
-                    </StackLayout>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <VerticalStackLayout>
+
+        <Button
+            Text="Exportar Logs a TXT"
+            Command="{Binding ExportLogsCommand}"
+            BackgroundColor="Black"
+            TextColor="White"
+            CornerRadius="8" />
+
+        <CollectionView
+            ItemsSource="{Binding Logs}"
+            RemainingItemsThreshold="1"
+            RemainingItemsThresholdReachedCommand="{Binding LoadLogsCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True">
+                        <StackLayout>
+                            <Label
+                        Text="{Binding Timestamp, StringFormat='{0:yyyy-MM-dd HH:mm:ss}'}"
+                        FontAttributes="Bold"
+                        FontSize="12" />
+                            <Label Text="{Binding Level}" FontSize="12" />
+                            <Label Text="{Binding Message}" FontSize="14" />
+                            <Label
+                        Text="{Binding Endpoint}"
+                        FontSize="12"
+                        TextColor="Gray" />
+                            <Label
+                        Text="{Binding Payload}"
+                        FontSize="10"
+                        TextColor="DarkGray"
+                        LineBreakMode="TailTruncation" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
 </ContentPage>
