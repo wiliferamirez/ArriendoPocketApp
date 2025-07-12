@@ -9,11 +9,13 @@ namespace ArriendoPocketApp.ViewModels
     public class PropiedadesViewModel : BaseViewModel
     {
         private readonly PropiedadService _service;
+        private readonly LogService _logService;
 
         public ObservableCollection<Propiedad> ListaPropiedades { get;  }
-        public PropiedadesViewModel(PropiedadService propiedadService)
+        public PropiedadesViewModel(PropiedadService propiedadService, LogService logService)
         {
             _service = propiedadService;
+            _logService = logService;
             ListaPropiedades = new ObservableCollection<Propiedad>();
         }
 
@@ -46,10 +48,18 @@ namespace ArriendoPocketApp.ViewModels
 
         public async Task CargarPropiedades()
         {
-            var propiedades = await _service.GetPropiedadesAsync();
             ListaPropiedades.Clear();
+            var propiedades = await _service.GetPropiedadesAsync();
             foreach (var p in propiedades)
                 ListaPropiedades.Add(p);
+
+            await _logService.AddAsync(new LogEntry
+            {
+                Timestamp = DateTime.UtcNow,
+                Level = "Info",
+                Message = $"Se cargaron {ListaPropiedades.Count} propiedades",
+                Endpoint = "GET /Propiedades",
+            });
         }
     }
 }

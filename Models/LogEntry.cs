@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArriendoPocketApp.Models
 {
-    internal class LogEntry
+    public class LogEntry
     {
         public int Id { get; set; }
         public DateTime Timestamp { get; set; }
