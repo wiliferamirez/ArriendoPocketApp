@@ -8,10 +8,6 @@
     BackgroundColor="White"
     Title="Mis Propiedades">
 
-    <ContentPage.BindingContext>
-        <vm:PropiedadesViewModel />
-    </ContentPage.BindingContext>
-
     <StackLayout Padding="20" Spacing="15">
 
         <Button Text="➕ Nueva Propiedad"

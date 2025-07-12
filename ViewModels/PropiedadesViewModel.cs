@@ -2,14 +2,20 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ArriendoPocketApp.Models;
 using ArriendoPocketApp.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ArriendoPocketApp.ViewModels
 {
     public class PropiedadesViewModel : BaseViewModel
     {
-        private readonly PropiedadService _service = new();
+        private readonly PropiedadService _service;
 
-        public ObservableCollection<Propiedad> ListaPropiedades { get; set; } = new();
+        public ObservableCollection<Propiedad> ListaPropiedades { get;  }
+        public PropiedadesViewModel(PropiedadService propiedadService)
+        {
+            _service = propiedadService;
+            ListaPropiedades = new ObservableCollection<Propiedad>();
+        }
 
         public ICommand IrACrearPropiedadCommand => new Command(async () =>
         {
