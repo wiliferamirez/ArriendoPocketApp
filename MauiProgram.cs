@@ -33,6 +33,10 @@ public static class MauiProgram
 			options.UseSqlite($"Filename={dbPath}"));
 
         Routing.RegisterRoute("editarpropiedad", typeof(EditarPropiedadPage));
+        Routing.RegisterRoute("login", typeof(LoginPage));
+        Routing.RegisterRoute("register", typeof(RegisterPage));
+        Routing.RegisterRoute("logs", typeof(LogsPage));
+
 
         builder.Services.AddSingleton<AuthService>();
 		builder.Services.AddSingleton<PropiedadService>();
@@ -42,6 +46,8 @@ public static class MauiProgram
 		builder.Services.AddSingleton<LogService>();
 		builder.Services.AddTransient<AgregarPropiedadViewModel>();
         builder.Services.AddTransient<EditarPropiedadViewModel>();
+        Routing.RegisterRoute("logs", typeof(LogsPage));
+        builder.Services.AddTransient<LogsViewModel>();
 
         var app = builder.Build();
 

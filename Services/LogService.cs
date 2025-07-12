@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using ArriendoPocketApp.Data;
 using ArriendoPocketApp.Models;
-using ArriendoPocketApp.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 
 namespace ArriendoPocketApp.Services
@@ -25,6 +26,12 @@ namespace ArriendoPocketApp.Services
                 throw;
             }
 
+        }
+        public async Task<List<LogEntry>> GetAllAsync()
+        {
+            return await _db.Logs
+                .OrderByDescending(l => l.Timestamp)
+                .ToListAsync();
         }
     }
 }
