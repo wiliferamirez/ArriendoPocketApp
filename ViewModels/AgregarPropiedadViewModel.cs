@@ -20,7 +20,6 @@ namespace ArriendoPocketApp.ViewModels
             _logService = logService;
         }
 
-        // Propiedades enlazadas al XAML
         public string AliasPropiedad { get; set; }
         public string DireccionPropiedad { get; set; }
         public string CiudadUbicacion { get; set; }
@@ -73,7 +72,6 @@ namespace ArriendoPocketApp.ViewModels
 
                 if (resultado)
                 {
-                    // Log de éxito
                     await _logService.AddAsync(new LogEntry
                     {
                         Timestamp = DateTime.UtcNow,
@@ -90,7 +88,6 @@ namespace ArriendoPocketApp.ViewModels
                 }
                 else
                 {
-                    // Log de fallo con detalles del error
                     await _logService.AddAsync(new LogEntry
                     {
                         Timestamp = DateTime.UtcNow,
@@ -106,7 +103,7 @@ namespace ArriendoPocketApp.ViewModels
             }
             catch (Exception ex)
             {
-                // Log de excepción
+
                 await _logService.AddAsync(new LogEntry
                 {
                     Timestamp = DateTime.UtcNow,

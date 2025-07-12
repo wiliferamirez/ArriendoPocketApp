@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using System.Windows.Input;
 using ArriendoPocketApp.Models;
 using ArriendoPocketApp.Services;
@@ -35,16 +36,65 @@ namespace ArriendoPocketApp.ViewModels
             bool confirm = await Shell.Current.DisplayAlert("Confirmar", "¿Eliminar esta propiedad?", "Sí", "No");
             if (!confirm) return;
 
-            bool success = await _service.EliminarPropiedadAsync(propiedad.PropiedadID);
-            if (success)
+            try
             {
-                ListaPropiedades.Remove(propiedad);
-                await Shell.Current.DisplayAlert("Éxito", "Propiedad eliminada correctamente.", "OK");
+                bool success = await _service.EliminarPropiedadAsync(propiedad.PropiedadID);
+                if (success)
+                {
+                    ListaPropiedades.Remove(propiedad);
+                    await Shell.Current.DisplayAlert("Éxito", "Propiedad eliminada correctamente.", "OK");
+
+                    await _logService.AddAsync(new LogEntry
+                    {
+                        Timestamp = DateTime.UtcNow,
+                        Level = "Info",
+                        Message = $"Propiedad {propiedad.AliasPropiedad} con id {propiedad.PropiedadID} eliminada correctamente.",
+                        Endpoint = $"DELETE /Propiedades/{propiedad.PropiedadID}",
+                        Payload = JsonSerializer.Serialize(new
+                        {
+                            PropiedadID = propiedad.PropiedadID,
+                            AliasPropiedad = propiedad.AliasPropiedad
+                        }),
+                    });
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", "No se pudo eliminar la propiedad.", "OK");
+
+                    await _logService.AddAsync(new LogEntry
+                    {
+                        Timestamp = DateTime.UtcNow,
+                        Level = "Error",
+                        Message = $"Error al eliminar propiedad {propiedad.AliasPropiedad} con id {propiedad.PropiedadID}.",
+                        Endpoint = $"DELETE /Propiedades/{propiedad.PropiedadID}",
+                        Payload = JsonSerializer.Serialize(new
+                        {
+                            PropiedadID = propiedad.PropiedadID,
+                            AliasPropiedad = propiedad.AliasPropiedad
+                        }),
+                    });
+                }
             }
-            else
-            {
-                await Shell.Current.DisplayAlert("Error", "No se pudo eliminar la propiedad.", "OK");
+            catch (Exception ex) 
+            { 
+                await Shell.Current.DisplayAlert("Error", $"Ocurrió un error al eliminar la propiedad: {ex.Message}", "OK");
+
+                await _logService.AddAsync(new LogEntry
+                {
+                    Timestamp = DateTime.UtcNow,
+                    Level = "Error",
+                    Message = $"Excepción al eliminar propiedad {propiedad.AliasPropiedad} con id {propiedad.PropiedadID}: {ex.Message}",
+                    Endpoint = $"DELETE /Propiedades/{propiedad.PropiedadID}",
+                    Payload = JsonSerializer.Serialize(new
+                    {
+                        PropiedadID = propiedad.PropiedadID,
+                        AliasPropiedad = propiedad.AliasPropiedad
+                    }),
+                });
             }
+
+
+            
         });
 
         public async Task CargarPropiedades()

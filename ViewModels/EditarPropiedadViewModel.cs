@@ -1,5 +1,4 @@
-﻿// ViewModels/EditarPropiedadViewModel.cs
-using ArriendoPocketApp.Models;
+﻿using ArriendoPocketApp.Models;
 using ArriendoPocketApp.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -25,7 +24,6 @@ namespace ArriendoPocketApp.ViewModels
             GuardarCambiosCommand = new AsyncRelayCommand(EjecutarGuardarAsync);
         }
 
-        // Campos enlazados al XAML
         public int PropiedadID { get; set; }
         public string AliasPropiedad { get; set; }
         public string DireccionPropiedad { get; set; }
@@ -55,7 +53,6 @@ namespace ArriendoPocketApp.ViewModels
 
         public IAsyncRelayCommand GuardarCambiosCommand { get; }
 
-        // Recibe el parámetro de la ruta: propiedadId
         public async void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             if (query.TryGetValue("propiedadId", out var obj)

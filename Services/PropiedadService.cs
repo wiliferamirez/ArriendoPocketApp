@@ -36,10 +36,10 @@ namespace ArriendoPocketApp.Services
             return response.IsSuccessStatusCode;
         }
 
-        // PropiedadService.cs
+
         public async Task<Propiedad> GetPropiedadAsync(int id)
         {
-            // GET /Propiedades/{id}
+
             var resp = await _httpClient.GetAsync($"Propiedades/{id}");
             resp.EnsureSuccessStatusCode();
             return await resp.Content.ReadFromJsonAsync<Propiedad>();
@@ -47,7 +47,6 @@ namespace ArriendoPocketApp.Services
 
         public async Task<(bool Success, string Content)> ActualizarPropiedadAsync(Propiedad propiedad)
         {
-            // PUT /Propiedades/{id}
             var response = await _httpClient.PutAsJsonAsync(
                 $"Propiedades/{propiedad.PropiedadID}", propiedad);
             var content = await response.Content.ReadAsStringAsync();
